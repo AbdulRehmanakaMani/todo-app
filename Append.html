@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <input type="text" value="" id="textbox" style="background-color: skyblue;"> <br><br>
+    <input type="button" value="Add" onclick="ToAdd();" style="background-color: sienna;">
+    <!-- <input type="button" value="Delete" onclick="ToDelete();">
+    <input type="button" value="Update" onclick="ToUpdate();"> -->
+
+
+    <ul id="myList" style="list-style-type:circle;">
+
+    </ul>
+
+    
+
+
+</body>
+
+</html>
+
+<script>
+    var arr = []
+    function ToAdd() {
+        var ToAddByDoM = document.getElementById("textbox");
+        arr.push(ToAddByDoM.value);
+        ToAddByDoM.value = "";
+        console.log("ARR: ", arr)
+        createList(arr, 'myList')
+        /* var node = document.createElement("ul");                 // Create a <li> node
+        var textnode = document.createTextNode(ToAddByDoM);         // Create a text node
+        node.appendChild(textnode);                              // Append the text to <li>
+        document.getElementById("myList").appendChild(node);
+        var buttonOfEdit = document.createElement("button");
+        buttonOfEdit.innerText = "Edit";
+        var buttonOfDelete = document.createElement("button");
+        buttonOfDelete.innerText = "Delete";
+        document.getElementById("myList").appendChild(buttonOfEdit);
+        document.getElementById("myList").appendChild(buttonOfDelete); */
+
+
+        //buttonOfEdit.onclick = ToUpdate;
+
+        // buttonOfDelete.onclick = ToDelete.call(this,"myList".length);
+
+
+
+
+
+
+
+
+    }
+
+    function createList(arr, listId) {
+        let listContainer = document.getElementById(listId);
+        var boxes = "";
+        for (var i = 0; i < arr.length; i++) {
+            boxes += `<li><span>${arr[i]}</span><button type="button" onclick="ToDelete(${i})" style="background-color: sienna;">Delete</button><button type="button" onclick="ToUpdate(${i})" style="background-color: sienna;">Edit</button></li>`;
+        }
+        listContainer.innerHTML = boxes;
+    }
+
+
+
+    function ToDelete(indexToDelete) {
+        arr.splice(indexToDelete, 1)
+        createList(arr, 'myList')
+    }
+
+    function ToUpdate(indexToUpdate) {
+        var promptBox = prompt("Type your Updated Text Here");
+        arr[indexToUpdate] = promptBox;
+        createList(arr, 'myList')
+
+
+
+
+    }
+
+</script>
